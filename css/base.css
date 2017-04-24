@@ -1,7 +1,12 @@
+body.container {
+	position: relative;
+	margin: auto;
+}
+
 header {
 	display: block;
 	position: relative;
-	margin: 50px auto;
+	margin-top: 50px;
 	max-width: 1000px;
 	min-width: 400px;
 	border-radius: 4px;
@@ -27,3 +32,8 @@ header img {
 	top: 200px;
 	padding-left: 0;
 }
+
+#user-dropdown {
+	float: right;
+}
+

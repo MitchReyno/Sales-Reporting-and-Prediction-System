@@ -27,7 +27,9 @@
 			<?php include "menu.php"; ?>
 		</header>
 
+		<?php startblock('body') ?>
 
+		<?php endblock() ?>
 		<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
 		<!-- All Bootstrap plug-ins file -->

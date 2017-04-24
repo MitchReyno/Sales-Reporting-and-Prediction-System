@@ -1,9 +1,8 @@
 
   <ul class="nav nav-pills">
 	<li class="active"><a href="#">Home</a></li>
-	<li><a href="#">Add Sales</a></li>
-	<li><a href="#">Search</a></li>
-	<li><a href="#">Transition</a></li>
+	<li><a href="./sales.php">Sales Records</a></li>
+	<li><a href="./stock.php">Stock</a></li>
 	<li class="dropdown">
 	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 			Reports <span class="caret"></span>
@@ -15,7 +14,7 @@
 	  </ul>
 	</li>
 
-	<li class="dropdown">
+	<li class="dropdown" id="user-dropdown" >
 	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 			Hi(<?php $username ?>) <span class="caret"></span>
 	  </a>
