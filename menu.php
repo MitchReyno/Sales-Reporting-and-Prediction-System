@@ -1,5 +1,5 @@
 <?php
-function menu($currentpage){
+function menu($currentpage, $username){
 	echo '
   <ul class="nav nav-pills">
 	<li';
@@ -34,7 +34,7 @@ function menu($currentpage){
 
 	<li class="dropdown" id="user-dropdown" >
 	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-			Hi(<?php $username ?>) <span class="caret"></span>
+			Hi('.$username.') <span class="caret"></span>
 	  </a>
 
 	  <ul class="dropdown-menu">

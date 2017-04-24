@@ -1,4 +1,7 @@
-<?php require_once 'ti.php' ?>
+<?php
+	require_once 'ti.php';
+	$username = "User";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,10 +25,11 @@
 	</head>
 	<body class = "container">
 		<header>
+			<a href="./index.php">
 			<img id="banner" src="http://www.nationalcollegeofpharmacy.org/images/banner.jpg" alt="People Health Pharmacy"/>
-			<h1>People Health Pharmacy</h1>
+				<h1>People Health Pharmacy</h1></a>
 			<?php include "menu.php";
-				menu($currentpage);
+				menu($currentpage, $username);
 			?>
 		</header>
 		<section>
