@@ -24,12 +24,15 @@
 		<header>
 			<img id="banner" src="http://www.nationalcollegeofpharmacy.org/images/banner.jpg" alt="People Health Pharmacy"/>
 			<h1>People Health Pharmacy</h1>
-			<?php include "menu.php"; ?>
+			<?php include "menu.php";
+				menu($currentpage);
+			?>
 		</header>
+		<section>
+			<?php startblock('body') ?>
 
-		<?php startblock('body') ?>
-
-		<?php endblock() ?>
+			<?php endblock() ?>
+		</section>
 		<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
 		<!-- All Bootstrap plug-ins file -->

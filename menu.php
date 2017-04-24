@@ -1,16 +1,34 @@
-
+<?php
+function menu($currentpage){
+	echo '
   <ul class="nav nav-pills">
-	<li class="active"><a href="#">Home</a></li>
-	<li><a href="./sales.php">Sales Records</a></li>
-	<li><a href="./stock.php">Stock</a></li>
-	<li class="dropdown">
+	<li';
+
+	if ($currentpage == "home") echo ' class="active"';
+
+	echo '><a href="./index.php">Home</a></li>
+	<li';
+
+	if ($currentpage == "sales") echo' class ="active"';
+
+	echo '><a href="./sales.php">Sales Records</a></li>
+	<li';
+
+	if ($currentpage == "stock") echo' class ="active"';
+
+	echo'><a href="./stock.php">Stock</a></li>
+	<li class="dropdown';
+
+	if ($currentpage == "reports") echo' active';
+
+	echo '">
 	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 			Reports <span class="caret"></span>
 	  </a>
 	  <ul class="dropdown-menu">
-		<li><a href="#">Monthly</a></li>
-		<li><a href="#">Weekly</a></li>
-		<li><a href="#">Annualy</a></li>
+		<li><a href="./reports.php#Monthly">Monthly</a></li>
+		<li><a href="./reports.php#Weekly">Weekly</a></li>
+		<li><a href="./reports.php#Annually">Annually</a></li>
 	  </ul>
 	</li>
 
@@ -26,7 +44,9 @@
 	  </ul>
 	</li>
 
-  </ul>
+  </ul>';
+}
+?>
 
 <!-- <li class="dropdown">
 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

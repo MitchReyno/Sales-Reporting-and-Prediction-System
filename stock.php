@@ -1,16 +1,16 @@
 <?php
-	$currentpage = "sales";
+	$currentpage = "stock";
 	include 'base.php';
 ?>
 
 <?php startblock('title') ?>
-	Sales Records
+	Stock
 <?php endblock() ?>
 
 <?php startblock('body') ?>
-	<h2>View current sales records:</h2>
+	<h2>View current stock inventory:</h2>
 	<fieldset>
-		<input type="button" value="Add sale"/>
+		<input type="button" value="Change stock"/>
 	</fieldset>
 	<table class="table">
 		<tr>
