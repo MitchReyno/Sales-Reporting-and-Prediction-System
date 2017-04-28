@@ -1,6 +1,12 @@
 <?php
 	require_once 'ti.php';
+	require_once 'settings.php';
 	$username = "User";
+	$conn = @mysqli_connect($host,
+		$user,
+		$pwd,
+		$sql_db
+	);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,5 +47,6 @@
 		<script src="js/jquery.min.js"></script>
 		<!-- All Bootstrap plug-ins file -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/angular.min.js"></script>
 	</body>
 </html>
