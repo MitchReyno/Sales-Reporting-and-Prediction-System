@@ -1,4 +1,7 @@
-<?php include 'base.php' ?>
+<?php
+	$currentpage = "home";
+	include 'base.php';
+?>
 
 <?php startblock('title') ?>
 	Home

@@ -1,6 +1,7 @@
 body.container {
 	position: relative;
 	margin: auto;
+	max-width: 1000px;
 }
 
 header {
@@ -19,6 +20,7 @@ header h1 {
 	top: 0;
 	margin: 20px 20px 20px 20px;
 	background-color: white;
+	padding: 10px;
 }
 
 header img {
@@ -37,3 +39,10 @@ header img {
 	float: right;
 }
 
+body.container section {
+	width: 100%;
+}
+
+.table {
+	width: 100%;
+}
