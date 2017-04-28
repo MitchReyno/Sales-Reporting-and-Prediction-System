@@ -1,4 +1,7 @@
-<?php require_once 'ti.php' ?>
+<?php
+	require_once 'ti.php';
+	$username = "User";
+?>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -22,14 +25,18 @@
 	</head>
 	<body class = "container">
 		<header>
+			<a href="./index.php">
 			<img id="banner" src="http://www.nationalcollegeofpharmacy.org/images/banner.jpg" alt="People Health Pharmacy"/>
-			<h1>People Health Pharmacy</h1>
-			<?php include "menu.php"; ?>
+				<h1>People Health Pharmacy</h1></a>
+			<?php include "menu.php";
+				menu($currentpage, $username);
+			?>
 		</header>
+		<section>
+			<?php startblock('body') ?>
 
-		<?php startblock('body') ?>
-
-		<?php endblock() ?>
+			<?php endblock() ?>
+		</section>
 		<!-- jQuery - required for Bootstrap's JavaScript plugins) -->
 		<script src="js/jquery.min.js"></script>
 		<!-- All Bootstrap plug-ins file -->
