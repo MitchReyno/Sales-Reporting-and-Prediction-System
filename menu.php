@@ -1,48 +1,53 @@
 <?php
+
+
+
 function menu($currentpage, $username){
-	echo '
+
+
+  echo '
   <ul class="nav nav-pills">
-	<li';
+  <li';
 
-	if ($currentpage == "home") echo ' class="active"';
+  if ($currentpage == "home") echo ' class="active"';
 
-	echo '><a href="./index.php">Home</a></li>
-	<li';
+  echo '><a href="./index.php">Home</a></li>
+  <li';
 
-	if ($currentpage == "sales") echo' class ="active"';
+  if ($currentpage == "sales") echo' class ="active"';
 
-	echo '><a href="./sales.php">Sales Records</a></li>
-	<li';
+  echo '><a href="./sales.php">Sales Records</a></li>
+  <li';
 
-	if ($currentpage == "stock") echo' class ="active"';
+  if ($currentpage == "stock") echo' class ="active"';
 
-	echo'><a href="./stock.php">Stock</a></li>
-	<li class="dropdown';
+  echo'><a href="./stock.php">Stock</a></li>
+  <li class="dropdown';
 
-	if ($currentpage == "reports") echo' active';
+  if ($currentpage == "reports") echo' active';
 
-	echo '">
-	  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-			Reports <span class="caret"></span>
-	  </a>
-	  <ul class="dropdown-menu">
-		<li><a href="./reports.php#Monthly">Monthly</a></li>
-		<li><a href="./reports.php#Weekly">Weekly</a></li>
-		<li><a href="./reports.php#Annually">Annually</a></li>
-	  </ul>
-	</li>
+  echo '">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Reports <span class="caret"></span>
+    </a>
+    <ul class="dropdown-menu">
+    <li><a href="./reports.php#Monthly">Monthly</a></li>
+    <li><a href="./reports.php#Weekly">Weekly</a></li>
+    <li><a href="./reports.php#Annually">Annually</a></li>
+    </ul>
+  </li>
 
-	<li class="dropdown" id="user-dropdown" >
-	 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-			Hi('.$username.') <span class="caret"></span>
-	  </a>
+  <li class="dropdown" id="user-dropdown" >
+   <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+      Hi '.$username.' <span class="caret"></span>
+    </a>
 
-	  <ul class="dropdown-menu">
-		<li><a href="#">Edit Profile</a></li>
-		<li class="divider"></li>
-		<li><a href="#">Log Out</a></li>
-	  </ul>
-	</li>
+    <ul class="dropdown-menu">
+    <li><a href="#">Edit Profile</a></li>
+    <li class="divider"></li>
+    <li><a href="logout.php">Log Out</a></li>
+    </ul>
+  </li>
 
   </ul>';
 }
