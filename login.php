@@ -16,23 +16,56 @@
    <body>
      <div class="container">
        <div class="row">
-      <form action="/action_page.php">
+      <form action="login.php" method="post">
          <div class="imgcontainer">
-            <img src="IMAGES/pharm.png" alt="pharmacy" class="pharmacy">
+            <img src="http://www.nationalcollegeofpharmacy.org/images/banner.jpg" alt="pharmacy" class="pharmacy">
          </div>
          <div class="container">
             <label><b>LOGIN ID</b></label>
             <input type="text" placeholder="Enter Username" name="uname" required>
             <label><b>PASSWORD</b></label>
             <input type="password" placeholder="Enter Password" name="pass" required>
-            <button type="submit">Login</button>
-            <input type="checkbox" checked="checked"> Remember me..
-         </div>
-         <div class="container" style="background-color:WHITE">
-            <button type="button" class="cancelbtn">Cancel</button>
-            <span class="pass">Forgot <a href="#">Password?</a></span>
+           <?php
+              function loginerror(){
+                echo "<p>Check your username/password and try again!</p>";
+              }
+           ?>
+            <button name="submit" type="submit">Login</button>
          </div>
       </form>
+         <?php
+              if(isset($_POST["uname"])&&isset($_POST["pass"]) && isset($_POST["submit"])){
+                  require_once("loginrequire.php");
+                  $conn = mysqli_connect($servername, $username, $password, $database);
+                  session_start();
+
+                  $username = $_POST["uname"];
+                  $password = $_POST["pass"];
+
+                  //$_SESSION['loginuser'] = $username;
+
+                  $loginquery = "select username,password from login where username = '$username' and password = '$password'";
+
+                  $data1 = mysqli_query($conn,$loginquery);
+                  $rownum1 = mysqli_fetch_assoc($data1);
+
+                  $usernameData = $rownum1["username"];
+                  $passwordData = $rownum1["password"];
+
+                  if($usernameData != $username){
+                    loginerror();
+                  }else if($passwordData != $password){
+                    loginerror();
+                  }else{
+                    $_SESSION['loginuser'] = $usernameData;
+                     header('Location: index.php');
+                  }
+
+              }else{
+
+              }
+
+         ?>
          </div>
      </div>
    </body>
