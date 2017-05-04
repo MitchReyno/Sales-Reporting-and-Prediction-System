@@ -20,7 +20,8 @@
 				echo '
 					<h2>View current stock inventory:</h2>
 					<fieldset>
-						<input type="button" value="Change stock"/>
+						<p><label for="product_id_search">Search by ID: </label><input type="text" name="product_id_search" ng-model="s.product_id" /></p>
+						<p><label for="product_name_search">Search by Name: </label><input type="text" name="product_name_search" ng-model="s.product_name" /></p>
 					</fieldset>
 					';
 				$emparray = array();
@@ -31,8 +32,9 @@
 				}
 				$new = json_encode($emparray);
 				$new = preg_replace('/"([a-zA-Z]+[a-zA-Z0-9_]*)":/','$1:',$new);
+				$new = str_replace('"', "'", $new);
 				echo '
-					<table class="table table-striped table-hover" data-ng-init=\'data = '.$new.'\'>
+					<table class="table table-striped table-hover" ng-init="data = '.$new.'">
 						<tr>
 							<th>Product ID</th>
 							<th>Name</th>
@@ -41,7 +43,7 @@
 							<th>Amount on order</th>
 							<th>Amount available</th>
 						</tr>
-						<tr data-ng-repeat="d in data">
+						<tr ng-repeat="d in data | filter: s">
 							<td>{{d.product_id}}</td>
 							<td>{{d.product_name}}</td>
 							<td>{{d.unit_price}}</td>
@@ -54,6 +56,7 @@
 					</table>';
 			}
 		}
-	?>
+
+?>
 
 <?php endblock() ?>
