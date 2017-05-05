@@ -12,17 +12,25 @@
 		if (!$conn) {
 			echo '<p>Could not connect to the database</p>';
 		} else {
+			echo '</br><ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#view">View</a></li>
+  <li><a data-toggle="tab" href="#Add">Add</a></li>
+  <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+</ul>
+
+<div class="tab-content">
+  <div id="view" class="tab-pane fade in active">';
 			$query = 'SELECT * FROM products ORDER BY product_id;';
 			$result = @mysqli_query($conn, $query);
 			if (!$result){
 				echo '<p>No stock records found</p>';
 			} else {
 				echo '
-					<h2>View current stock inventory:</h2>
+					<h3>View current stock inventory:</h3></br>
 					<fieldset>
 						<p><label for="product_id_search">Search by ID: </label><input type="text" name="product_id_search" ng-model="s.product_id" /></p>
 						<p><label for="product_name_search">Search by Name: </label><input type="text" name="product_name_search" ng-model="s.product_name" /></p>
-					</fieldset>
+					</fieldset></br>
 					';
 				$emparray = array();
 				while ($row = @mysqli_fetch_assoc($result)){
@@ -55,6 +63,18 @@
 				echo '
 					</table>';
 			}
+			echo'
+  </div>
+  <div id="Add" class="tab-pane fade">
+	<h3>Add stock records:</h3>
+	<p>Some content in menu 1.</p>
+  </div>
+  <div id="menu2" class="tab-pane fade">
+	<h3>Menu 2</h3>
+	<p>Some content in menu 2.</p>
+  </div>
+</div>';
+
 		}
 
 ?>
