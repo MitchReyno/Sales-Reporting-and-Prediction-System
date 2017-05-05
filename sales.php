@@ -26,7 +26,7 @@
 			echo'
 						<h2>View current sales records:</h2>
 						  <fieldset>
-							<p><label for="order_id_search">Search by ID: </label><input type="text" name="order_id_search" ng-model="s.order_id" /></p>
+							<p><label for="order_id_search">Search by ID: </label><input type="text" name="order_id_search" ng-model="s.Order_ID" /></p>
 						</fieldset>';
 			$emparray = array();
 			while ($row = @mysqli_fetch_assoc($result)){

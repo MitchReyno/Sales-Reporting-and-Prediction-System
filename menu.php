@@ -24,29 +24,29 @@ function menu($currentpage, $username){
   echo'><a href="./stock.php">Stock</a></li>
   <li class="dropdown';
 
-  if ($currentpage == "reports") echo' active';
+  //if ($currentpage == "reports") echo' active';
 
   echo '">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Reports <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-    <li><a href="./reports.php#Monthly">Monthly</a></li>
-    <li><a href="./reports.php#Weekly">Weekly</a></li>
-    <li><a href="./reports.php#Annually">Annually</a></li>
-    </ul>
+	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+	  Reports <span class="caret"></span>
+	</a>
+	<ul class="dropdown-menu">
+	<li><a href="./reports.php#Weekly">Weekly</a></li>
+	<li><a href="./reports.php#Monthly">Monthly</a></li>
+	<li><a href="./reports.php#Annual">Annual</a></li>
+	</ul>
   </li>
 
   <li class="dropdown" id="user-dropdown" >
    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Hi '.$username.' <span class="caret"></span>
-    </a>
+	  Hi '.$username.' <span class="caret"></span>
+	</a>
 
-    <ul class="dropdown-menu">
-    <li><a href="#">Edit Profile</a></li>
-    <li class="divider"></li>
-    <li><a href="logout.php">Log Out</a></li>
-    </ul>
+	<ul class="dropdown-menu">
+	<li><a href="#">Edit Profile</a></li>
+	<li class="divider"></li>
+	<li><a href="logout.php">Log Out</a></li>
+	</ul>
   </li>
 
   </ul>';
