@@ -17,16 +17,13 @@
 
 	<div class="tab-content">
 	  <div id="Weekly" class="tab-pane fade in active">
-		<h3>Weekly Reports</h3>
-		<p>Some content.</p>
+		<?php include 'reports/week.php'; ?>
 	  </div>
 	  <div id="Monthly" class="tab-pane fade">
-		<h3>Monthly Reports</h3>
-		<p>Some content in menu 1.</p>
+		<?php include 'reports/month.php'; ?>
 	  </div>
 	  <div id="Annual" class="tab-pane fade">
-		<h3>Annual Reports</h3>
-		<p>Some content in menu 2.</p>
+		<?php include 'reports/year.php'; ?>
 	  </div>
 	</div>
 	<fieldset>
