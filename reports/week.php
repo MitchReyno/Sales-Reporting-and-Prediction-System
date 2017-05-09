@@ -28,7 +28,7 @@
 	<tr>
 		<?php
 			$query = "SELECT orders.order_date AS date, SUM(products.unit_price * order_details.Quantity - order_details.Discount) AS totalsales FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID INNER JOIN products ON order_details.product_id = products.product_id
-WHERE YEARWEEK(orders.order_date, 1) = YEARWEEK(STR_TO_DATE('".$dates["Monday"]."', '%d/%m/%Y'), 1) GROUP BY orders.order_date, YEARWEEK(orders.order_date, 1) ORDER BY orders.order_date";
+WHERE YEARWEEK(orders.order_date, 1) = YEARWEEK(STR_TO_DATE('".$dates["Monday"]."', '%d/%m/%Y'), 1) GROUP BY orders.order_date, YEARWEEK(orders.order_date, 1) ORDER BY orders.order_date;";
 			$result = mysqli_query($conn, $query);
 			$table = array();
 			while ($row = @mysqli_fetch_assoc($result)){
