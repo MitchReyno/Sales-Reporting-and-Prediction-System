@@ -24,7 +24,7 @@ function menu($currentpage, $username){
   echo'><a href="./stock.php">Stock</a></li>
   <li class="dropdown';
 
-  //if ($currentpage == "reports") echo' active';
+  if ($currentpage == "reports") echo' class="active"';
 
   echo '">
 	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -35,7 +35,13 @@ function menu($currentpage, $username){
 	<li><a href="./reports.php#Monthly">Monthly</a></li>
 	<li><a href="./reports.php#Annual">Annual</a></li>
 	</ul>
-  </li>
+  </li>';
+
+  echo '<li';
+
+  if ($currentpage == "suppliers") echo' class ="active"';
+
+  echo'><a href="./suppliers_view.php">Suppliers</a></li>
 
   <li class="dropdown" id="user-dropdown" >
    <a class="dropdown-toggle" data-toggle="dropdown" href="#">

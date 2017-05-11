@@ -50,15 +50,20 @@
 							<th>Stock level</th>
 							<th>Amount on order</th>
 							<th>Amount available</th>
-						</tr>
+							<th>Edit</th>
+						</tr><form method = "post" action = "edit_stock.php">
 						<tr ng-repeat="d in data | filter: s">
+
 							<td>{{d.product_id}}</td>
 							<td>{{d.product_name}}</td>
 							<td>{{d.unit_price}}</td>
 							<td>{{d.unit_in_stock}}</td>
 							<td>{{d.unit_on_order}}</td>
 							<td>{{d.recorded_level}}</td>
-						</tr>
+							<td><button type = "submit" class="btn btn-primary">Edit</button></td>
+							<td><input type ="hidden" name="hidden" value = "{{d.product_id}}"/></td>
+
+						</tr></form>
 					';
 				echo '
 					</table>';
