@@ -62,7 +62,9 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 			}
 			for($i = 1; $i <= date('t', $month); $i++)
 			{
-				echo '<td>'.$i.'</td>';
+				echo '<td><em>'.$i.'</em>
+					<p>';
+				echo '</p></td>';
 				if (date('N' , mktime(0, 0, 0, date('n', $month), $i, $year)) == 7)
 				{
 					echo '</tr>';
