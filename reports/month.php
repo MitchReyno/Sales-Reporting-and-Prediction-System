@@ -100,6 +100,42 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 </table>
 <?php
 	echo '<h3>Total monthly sales: <span id="monthtotal">$'.number_format($monthtotal, 2).'</span></h3>';
+if($month==12){
+	$predictmonth = 1;
+	$predictyear = $year+1;
+} else {
+	$predictmonth = $month+1;
+	$predictyear = $year;
+}
+$query = "Select
+  Month(orders.order_date) As date, Sum(products.unit_price * order_details.Quantity - order_details.Discount) As
+  totalsales
+From
+  orders Inner Join
+  order_details
+	On order_details.Order_ID = orders.Order_ID Inner Join
+  products
+	On order_details.product_id = products.product_id
+Where
+  orders.order_date < Str_To_Date('01-".$predictmonth."-".$predictyear."', '%d-%m-%Y') and orders.order_date >= date_add(Str_To_Date('01-".$predictmonth."-".$predictyear."', '%d-%m-%Y'), interval- 4 month)
+Group By
+  Month(orders.order_date), Year(orders.order_date)
+Order By
+  date Desc
+Limit 4";
+		$result = mysqli_query($conn, $query);
+		$predictedamount = 0;
+		$divisor = 0;
+		while($row = @mysqli_fetch_assoc($result)){
+			$predictedamount = $predictedamount + $row['totalsales'];
+			$divisor = $divisor +1;
+		}
+		if($divisor==0){
+			$predictedamount = 0;
+		} else {
+			$predictedamount = $predictedamount / $divisor;
+		}
+		echo '<h3 id="predictedmonth">Predicted sales for following month: $'.number_format($predictedamount,2).'</h3>';
 ?>
 <fieldset>
 	<p><input type="button" value="Convert to CSV" onclick=<?php echo '"genMonthCSV('.$month.','.$year.')"';?>/></p>
