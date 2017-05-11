@@ -23,6 +23,7 @@
 			}
 		?>
 		<th>Weekly total</th>
+		<th>Predicted total sales for following week</th>
 	</tr>
 	<tr>
 		<?php
@@ -56,6 +57,39 @@ WHERE YEARWEEK(orders.order_date, 1) = YEARWEEK(STR_TO_DATE('".$dates["Monday"].
 				$weektotal = $weektotal + $daytotal;
 			}
 		echo '<td>$'.number_format($weektotal, 2).'</td>';
+		$newdate = str_replace('/', '-', $dates["Monday"]);
+		$newdate = date('d-m-Y', strtotime($newdate.' + 1 week'));
+		$query = "Select
+  Week(orders.order_date) As date,
+  Sum(products.unit_price * order_details.Quantity - order_details.Discount) As
+  totalsales
+From
+  orders Inner Join
+  order_details
+	On order_details.Order_ID = orders.Order_ID Inner Join
+  products
+	On order_details.product_id = products.product_id
+Where
+ orders.order_date < Str_To_Date('".$newdate."',
+  '%d-%m-%Y') and orders.order_date >= date_add(Str_To_Date('".$newdate."', '%d-%m-%Y'), interval- 4 week)
+Group By
+  YearWeek(orders.order_date, 1)
+Order By
+  orders.order_date
+  desc limit 4;";
+		$result = mysqli_query($conn, $query);
+		$predictedamount = 0;
+		$divisor = 0;
+		while($row = @mysqli_fetch_assoc($result)){
+			$predictedamount = $predictedamount + $row['totalsales'];
+			$divisor = $divisor + 1;
+		}
+		if($divisor==0){
+			$predictedamount = 0;
+		} else {
+			$predictedamount = $predictedamount / $divisor;
+		}
+		echo '<td id="predictedweek">$'.number_format($predictedamount, 2).'</td>';
 		?>
 	</tr>
 </table>

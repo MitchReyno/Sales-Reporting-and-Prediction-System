@@ -22,6 +22,7 @@ function genWeekCSV(){
 				wOutput.push(wDates.item(i).innerHTML+","+wSalesAmounts.item(i).innerHTML);
 			}
 		}
+	wOutput.push("Predicted next week,"+document.getElementById("predictedweek").innerHTML);
 
 	wText.value = wOutput.join("\n");
 	if(wOutput.length > 4){
@@ -44,7 +45,6 @@ function genMonthCSV(month, year){
 			} else {
 				var amount = listRows.item(1).cells.item(i).getElementsByTagName("p")[0].innerHTML;
 			}
-			alert(amount);
 			mOutput.push(pad(listRows.item(1).cells.item(i).getElementsByTagName("h5")[0].innerHTML, 2)+"/"+pad(month, 2)+"/"+year+","+amount);
 		}
 	}
@@ -60,6 +60,7 @@ function genMonthCSV(month, year){
 		}
 	}
 	mOutput.push("Total,"+document.getElementById("monthtotal").innerHTML);
+	mOutput.push("Predicted next month,"+document.getElementById("predictedmonth").innerHTML);
 
 	mText.value = mOutput.join("\n");
 	if(mOutput.length > 4){
@@ -85,6 +86,7 @@ function genYearCSV(year){
 		yOutput.push(pad(i,2)+"/"+year+","+amount);
 	}
 	yOutput.push("Total,"+document.getElementById("yeartotal").innerHTML)
+	yOutput.push("Predicted next year,"+document.getElementById("predictedyear").innerHTML);
 
 	yText.value = yOutput.join("\n");
 	if(yOutput.length > 4){
