@@ -6,7 +6,6 @@
 	else
 	{
 		$dates = array("Monday"=>date('d/m/Y',strtotime("monday this week", strtotime($_POST['wdate']))),"Tuesday"=>date('d/m/Y',strtotime("monday this week +1 day", strtotime($_POST['wdate']))),"Wednesday"=>date('d/m/Y',strtotime("monday this week +2 day", strtotime($_POST['wdate']))),"Thursday"=>date('d/m/Y',strtotime("monday this week +3 day", strtotime($_POST['wdate']))),"Friday"=>date('d/m/Y',strtotime("monday this week +4 day", strtotime($_POST['wdate']))),"Saturday"=>date('d/m/Y',strtotime("monday this week +5 day", strtotime($_POST['wdate']))),"Sunday"=>date('d/m/Y',strtotime("monday this week +6 day", strtotime($_POST['wdate']))));
-		echo '<p>'.$_POST['wdate'].'</p>';
 	}
  ?>
 <form action="./reports.php#Weekly" method="post">
@@ -15,7 +14,7 @@
 	<input type="submit" value="Submit"/>
 </form>
 <h3>Weekly report for the week beginning with <strong><em>Monday <?php echo $dates["Monday"]; ?></em></strong></h3>
-<table class='table table-striped table-hover'>
+<table class='table table-striped table-hover' id="weektable">
 	<tr>
 		<?php
 			foreach ($dates as $d => $d_value)
@@ -56,10 +55,16 @@ WHERE YEARWEEK(orders.order_date, 1) = YEARWEEK(STR_TO_DATE('".$dates["Monday"].
 				echo '</td>';
 				$weektotal = $weektotal + $daytotal;
 			}
-		echo '<td>$'.$weektotal.'</td>';
+		echo '<td>$'.number_format($weektotal, 2).'</td>';
 		?>
 	</tr>
 </table>
+
+
 <?php
 	echo '<h3>Total weekly sales: $'.number_format($weektotal, 2).'</h3>';
 ?>
+<fieldset>
+	<p><input type="button" value="Convert to CSV" onclick="genWeekCSV()"/></p>
+	<p><textarea readonly id="csvweekoutput" rows="4" cols="70"></textarea></p>
+</fieldset>

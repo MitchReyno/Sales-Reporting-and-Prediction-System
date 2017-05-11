@@ -2,6 +2,7 @@ body.container {
 	position: relative;
 	margin: auto;
 	max-width: 1000px;
+	padding-bottom: 100px;
 }
 
 header {

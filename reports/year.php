@@ -22,7 +22,8 @@
 	<input type="submit" value="Submit"/>
 </form>
 <h3>Annual report for <em><strong><?php echo $year; ?></strong></em></h3>
-<table class='table table-striped table-hover'>
+<table class='table table-striped table-hover' id='yeartable'>
+	<tr><th>Month</th><th>Total sales amount</th></tr>
 	<?php
 	$query = "SELECT MONTH(orders.order_date) AS date, SUM(products.unit_price * order_details.Quantity - order_details.Discount) AS totalsales FROM orders INNER JOIN order_details ON order_details.Order_ID = orders.Order_ID INNER JOIN products ON order_details.product_id = products.product_id
 WHERE YEAR(orders.order_date) = ".$year." GROUP BY MONTH(orders.order_date) ORDER BY orders.order_date;";
@@ -51,5 +52,9 @@ WHERE YEAR(orders.order_date) = ".$year." GROUP BY MONTH(orders.order_date) ORDE
 	?>
 </table>
 <?php
-	echo '<h3>Total annual sales: $'.number_format($annualsales, 2).'</h3>';
+	echo '<h3>Total annual sales: <span id="yeartotal">$'.number_format($annualsales, 2).'</span></h3>';
 ?>
+<fieldset>
+	<p><input type="button" value="Convert to CSV" onclick=<?php echo '"genYearCSV('.$year.')"';?>/></p>
+	<p><textarea readonly id="csvyearoutput" rows="4" cols="70"></textarea></p>
+</fieldset>

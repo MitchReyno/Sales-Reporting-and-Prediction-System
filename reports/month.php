@@ -45,7 +45,7 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 </form>
 <h3>Monthly report for <?php echo "<em><strong>".date('F', mktime(0, 0, 0, $month, 10))." ".$year."</strong></em>"; ?></h3>
 
-<table class='table table-striped table-hover'>
+<table class='table table-striped table-hover' id="monthtable">
 	<tr>
 		<th>Monday</th>
 		<th>Tuesday</th>
@@ -65,7 +65,7 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 			$monthtotal = 0;
 			for ($i = 1; $i < date('N', mktime(0, 0, 0, $month, 1, $year)); $i++)
 			{
-				echo '<td></td>';
+				echo '<td class="blank"></td>';
 			}
 			for($i = 1; $i <= date('t', $month); $i++)
 			{
@@ -74,7 +74,7 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 				{
 					$dailytotal = $monthdata[$i];
 				}
-				echo '<td><p><em><strong>'.$i.'</strong></em></p></br>
+				echo '<td><h5>'.$i.'</h5></br>
 					<p>';
 				if($dailytotal == 0)
 				{
@@ -99,5 +99,10 @@ WHERE YEAR(orders.order_date) = ".$_POST['year']." AND MONTHNAME(test.orders.ord
 	</tr>
 </table>
 <?php
-	echo '<h3>Total monthly sales: $'.number_format($monthtotal, 2).'</h3>';
+	echo '<h3>Total monthly sales: <span id="monthtotal">$'.number_format($monthtotal, 2).'</span></h3>';
 ?>
+<fieldset>
+	<p><input type="button" value="Convert to CSV" onclick=<?php echo '"genMonthCSV('.$month.','.$year.')"';?>/></p>
+	<p><textarea readonly id="csvmonthoutput" rows="4" cols="70"></textarea></p>
+</fieldset>
+
