@@ -1,22 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Template that uses Bootstrap</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,
-                                   initial-scale=1.0" />
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5
-      elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page
-        via file:// -->
-    <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->
-  </head>
-  <body class = "container">
+
+  <body class = "container" data-ng-controller = "myCtrl">
     <?php
       $currentpage = "sales";
        include 'base.php';
@@ -25,7 +8,7 @@
     ?>
 
     <div class = "container">
-    <form action="add_sales.php" method="post">
+    <form action="add_sales.php" method="post" name="salesform"   novalidate="novalidate">
       <div class="row">
         <div class="col-lg-6">
           <h3>Customer Data</h3>
@@ -34,11 +17,15 @@
               <label for="compname">Company Name:</label>
             </div>
             <div class="col-lg-6">
-              <input type="text" name="compname" id="compname"/></div>
+              <input type="text" name="compname" id="compname" data-ng-model ="user.compname" />
+              <span ng-show="salesform.compname.$invalid && salesform.compname.$dirty">Company name is required!</span>
+            </div>
         </div>
         <div class="row">
           <div class="col-lg-6"><label for="contactnum">Contact Number:</label></div>
-          <div class="col-lg-6"><input type="text" name="contactnum" id="contactnum"/></div>
+          <div class="col-lg-6"><input type="number" name="contactnum" id="contactnum" data-ng-model ="user.contactnum" minlength="10"/>
+          <span ng-show="salesform.contactnum.$invalid && salesform.contactnum.$dirty && salesform.contactnum.$error.minlength">Contact number is required!</span>
+          </div>
         </div>
           <div class="row">
             <div class="col-lg-6"><label for="address">Address:</label>
@@ -91,17 +78,19 @@
         <div class="row">
             <div class="col-lg-2"><label for="quantity">Quantity :</label></div>
             <div class="col-lg-2">
-              <input type="text" name="quantity" id="quantity"/>
+              <input type="number" name="quantity" id="quantity" data-ng-model ="user.quantity"/>
+              <span ng-show="salesform.quantity.$invalid && salesform.quantity.$dirty">Invalid input!</span>
           </div>
           </div>
         <div class="row">
             <div class="col-lg-2"><label for="discount">Discount :</label></div>
             <div class="col-lg-3">
-              <input type="text" name="discount" id="discount"/><span> &#37;</span>
+              <input type="number" name="discount" id="discount" data-ng-model ="user.discount"/><span> &#37;</span>
+               <span ng-show="salesform.discount.$invalid && salesform.discount.$dirty">Invalid input!</span>
           </div>
           </div>
       </div>
-      <button type="submit" class="btn btn-primary "> Submit Order</button>
+      <button type="submit" data-ng-disabled="salesform.$invalid" class="btn btn-primary "> Submit Order</button>
       <button type="reset" class="btn btn-primary "> Reset Order</button>
     </form>
       <div>
@@ -111,8 +100,6 @@
     if(!$conn){
       echo "Problem with data base! Check back later!";
     }else{
-      echo "connected to database";
-
       $errMsg=" \n";
        function sanitise_input($data) {
          $data = trim($data);
@@ -179,9 +166,8 @@
 
             if($result1 && $result2 && $result3 && $result4){
               receipt($newIDord, $product, $quantityprod,$discount,$servername, $username, $password, $database);
-                  echo"<p> Database is populated! </p>";
+
             }else{
-              echo "check queries";
             }
 
          }else{
@@ -197,7 +183,6 @@
         function receipt($newIDord,$product, $quantityprod,$discount,$servername, $username, $password, $database){
           require_once("require.php");
           $conn = mysqli_connect($servername, $username, $password, $database);
-          echo $newIDord;
 
           $dataquery1 = "SELECT customers.company_name, customers.contact_num, customers.address, orders.order_date, orders.req_date, orders.shipping_date
 FROM customers
@@ -275,5 +260,10 @@ WHERE orders.Order_ID = ".$newIDord;
         ?>
       </div>
     </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script src="js/appmenulist.js"></script>
   </body>
 </html>
