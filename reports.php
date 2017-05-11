@@ -26,9 +26,6 @@
 		<?php include 'reports/year.php'; ?>
 	  </div>
 	</div>
-	<fieldset>
-		<input type="button" value="Convert to CSV"/>
-	</fieldset>
 	<script>
 	function load(){
 
@@ -45,4 +42,5 @@
 	window.onload = load;
 	window.onhashchange = load;
 </script>
+<script src="./js/csvgenerate.js"></script>
 <?php endblock() ?>
