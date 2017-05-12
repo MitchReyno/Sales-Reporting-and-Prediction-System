@@ -1,5 +1,5 @@
 <?php
-	$currentpage = "home";
+	$currentpage = "suppliers";
 	include 'base.php';
 ?>
 
