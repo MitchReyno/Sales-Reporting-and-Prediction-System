@@ -52,16 +52,16 @@ $currentpage = "stock";
 		}
 
 		 if(isset($_POST["update"]) && isset($_POST["hidden2"])
-		   && isset($_POST["prodname"]) && isset($_POST["unitprice"]) && isset($_POST["unitstock"]) && isset($_POST["unitonorder"]) && isset($_POST["recordedlevel"])){
+		   && isset($_POST["product_name"]) && isset($_POST["unit_price"]) && isset($_POST["unit_in_stock"]) && isset($_POST["unit_on_order"]) && isset($_POST["recorded_level"])){
 		  $num = $_POST["hidden2"];
 		  $num1=sanitise_input($num);
 		  $num1 = preg_replace('/[^A-Za-z0-9\-]/', '', $num1);
-		  $prodname = $_POST["prodname"];
-		  $unitprice = $_POST["unitprice"];
-		  $unitstock = $_POST["unitstock"];
-		  $unitonorder = $_POST["unitonorder"];
-		  $recordedlevel = $_POST["recordedlevel"];
-		  $deleteQuery1 = "UPDATE products SET prodname= '$prodname', unitprice='$unitprice', unitstock ='$unitstock', unitonorder = '$unitonorder', recordedlevel = '$recordedlevel' where product_id ='$num1' ";
+		  $prodname = $_POST["product_name"];
+		  $unitprice = $_POST["unit_price"];
+		  $unitstock = $_POST["unit_in_stock"];
+		  $unitonorder = $_POST["unit_on_order"];
+		  $recordedlevel = $_POST["recorded_level"];
+		  $deleteQuery1 = "UPDATE products SET product_name= '$prodname', unit_price='$unitprice', unit_in_stock ='$unitstock', unit_on_order = '$unitonorder', recorded_level = '$recordedlevel' where product_id ='$num1' ";
 
 		  $result2 = mysqli_query($conn,$deleteQuery1);
 
@@ -84,21 +84,26 @@ $currentpage = "stock";
 			  <div class="col-lg-6"><label for="prodname">Product name:</label>
 			  </div>
 			  <div class="col-lg-6">
-			  <input type="text" name="prodname" id="prodname" value = "<?php  echo $row['product_name']; ?>"/></div>
+			  <input type="text" name="product_name" id="prodname" value = "<?php  echo $row['product_name']; ?>"/></div>
 			</div>
 			<div class="row">
 			  <div class="col-lg-6"><label for="unitprice">Unit price:</label></div>
-			  <div class="col-lg-6"><input type="text" name="unitprice" id="unitprice" value = "<?php echo $row['unit_price']; ?>"/></div>
+			  <div class="col-lg-6"><input type="text" name="unit_price" id="unitprice" value = "<?php echo $row['unit_price']; ?>"/></div>
 			</div>
 			<div class="row">
-			  <div class="col-lg-6"><label for="unitstock">Unit in stock:</label>
+			  <div class="col-lg-6"><label for="unitsinstock">Unit in stock:</label>
 			  </div>
-			  <div class="col-lg-6"><input type="text" name="address" id="address" value = "<?php echo $row['address']; ?>"/>
+			  <div class="col-lg-6"><input type="text" name="unit_in_stock" id="unitsinstock" value = "<?php echo $row['unit_in_stock']; ?>"/>
 			  </div>
 			</div>
 			<div class="row">
 			  <div class="col-lg-6"><label for="unitonorder">Unit on order:</label></div>
-			  <div class="col-lg-6"><input type="text" name="unitonorder" id="unitonorder" value = "<?php echo $row['unitonorder']; ?>"/>
+			  <div class="col-lg-6"><input type="text" name="unit_on_order" id="unitonorder" value = "<?php echo $row['unit_on_order']; ?>"/>
+			  </div>
+			</div>
+		   <div class="row">
+			  <div class="col-lg-6"><label for="recordedlevel">Recorded level:</label></div>
+			  <div class="col-lg-6"><input type="text" name="recorded_level" id="recordedlevel" value = "<?php echo $row['recorded_level']; ?>"/>
 			  </div>
 			</div>
 			<div class="row">
