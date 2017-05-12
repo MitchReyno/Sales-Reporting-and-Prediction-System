@@ -68,17 +68,9 @@
           $name = $_POST["name"];
           $pass = $_POST["password"];
            $idd = $_POST["idd"];
-           echo "idd";
-           echo $idd;
+           $idd = preg_replace('/[^A-Za-z0-9\-]/', '', $idd);
 
-           $que = "select * from login where username ='$name'";
-           $result11 = mysqli_query($conn,$que);
-           $row = mysqli_fetch_assoc($result11);
-           $name1 = $row['username'];
-           echo $name + "\n";
-           echo "username" + $name1;
-           echo $pass +"\n";
-          $deleteQuery1 = "UPDATE login SET username = '$name',password = '$pass'  where username ='$name1' ";
+          $deleteQuery1 = "UPDATE login SET username = '$name',password = '$pass'  where id ='$idd' ";
 
           $result2 = mysqli_query($conn,$deleteQuery1);
            echo $result2;
@@ -111,7 +103,7 @@
               <div class="col-lg-6">
                 <div class="row">
                   <div class="col-lg-6">
-                    <input type = 'hidden' name='idd' value = "<?php echo $id; ?>" />
+                    <input type = 'hidden' name='idd' value = "<?php echo $_POST["id"]; ?>" />
                     <input type="submit" name="update" class="btn btn-primary" value ="Edit User"/>
                   </div>
                 </div>
