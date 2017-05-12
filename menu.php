@@ -23,12 +23,11 @@ function menu($currentpage, $username){
 
   echo'><a href="./stock.php">Stock</a></li>
   <li class="dropdown';
+	if ($currentpage == "reports") {echo' active';}
+	echo '">
+	  <a class="dropdown-toggle"';
 
-  if ($currentpage == "reports") echo' class="active"';
-
-  echo '">
-	<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-	  Reports <span class="caret"></span>
+	echo' data-toggle="dropdown" href="#">Reports<span class="caret"></span>
 	</a>
 	<ul class="dropdown-menu">
 	<li><a href="./reports.php#Weekly">Weekly</a></li>
@@ -41,15 +40,24 @@ function menu($currentpage, $username){
 
   if ($currentpage == "suppliers") echo' class ="active"';
 
-  echo'><a href="./suppliers_view.php">Suppliers</a></li>
+  echo'><a href="./suppliers_view.php">Suppliers</a></li>';
 
+	if($_SESSION['loginuser'] == "admin"){
+		echo '<li';
+
+  if ($currentpage == "users") echo' class ="active"';
+
+  echo'><a href="./users_view.php">Users</a></li>';
+	}
+
+  echo '
   <li class="dropdown" id="user-dropdown" >
    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
 	  Hi '.$username.' <span class="caret"></span>
 	</a>
 
 	<ul class="dropdown-menu">
-	<li><a href="#">Edit Profile</a></li>
+	<li><a href="admin_login.php">Admin login</a></li>
 	<li class="divider"></li>
 	<li><a href="logout.php">Log Out</a></li>
 	</ul>
